@@ -1,4 +1,4 @@
-# Google Jobs Scraper
+# Google Jobs Scraper v2
 
 ### About the project
 
