@@ -1,6 +1,9 @@
-# Google Jobs Scraper
+# Google Jobs Scraper v2
 
 ### About the project
+
+This is a fork of the original [Google Jobs Scraper](https://github.com/alimahmoud7/google-jobs-scraper) project. I plan to maintain and update it as needed to ensure continued functionality and address any potential issues with outdated dependencies.
+
 > Simply, The script scrapes all the jobs from all the pages (first to final available page) located on [https://careers.google.com/jobs](https://careers.google.com/jobs#t=sq&li=20&st=0&jlo=all) and return's the result as a JSON string, Then you will have a JSON file containing  all scraped data.
 
 ### How to Run the Program
@@ -16,8 +19,6 @@ pip install requests beautifulsoup4 selenium
 ```
 python scrape_google.py
 ```
-
-**Note:** For Windows users, Please check [this video](https://drive.google.com/open?id=0BzTpKjilS_t0WU5sOGV3TS01d0U)
 
 ### Structure of JSON output 
 ```
@@ -45,3 +46,5 @@ python scrape_google.py
 }
 ```
 
+### Contributing
+If you’d like to contribute to the project, please fork this repository, make your changes, and submit a pull request. Feel free to report issues or suggest improvements.
