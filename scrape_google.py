@@ -11,10 +11,11 @@ def get_jobs(location):
     
     # Prepare the parameters
     params = {
-        "location": location,
+        "q": "",  # Empty search query
         "page": 1,
         "page_size": 20,
-        "sort_by": "relevance"
+        "location": location,
+        "sort_by": "relevance",
     }
     
     jobs = []
@@ -50,12 +51,23 @@ def get_jobs(location):
                 break
                 
             for job in job_listings:
+                # Extract location information
+                locations = job.get("locations", [])
+                if len(locations) > 1:
+                    location_display = "Multiple Locations"
+                else:
+                    location_display = locations[0].get("display") if locations else "Unknown Location"
+                
+                # Get job ID and remove "jobs/" prefix if present
+                job_id = job.get("id", "")
+                if job_id.startswith("jobs/"):
+                    job_id = job_id[5:]  # Remove "jobs/" prefix
+                
                 jobs.append({
-                    'job_id': job.get("id"),
+                    'job_id': job_id,
                     'title': job.get("title"),
-                    'location': job.get("location"),
-                    'company': job.get("company"),
-                    'url': f"https://careers.google.com/jobs/results/{job.get('id')}",
+                    'location': location_display,
+                    'url': f"https://www.google.com/about/careers/applications/jobs/results/{job_id}",
                     'description': job.get("description", ""),
                     'qualifications': job.get("qualifications", ""),
                     'responsibilities': job.get("responsibilities", "")
