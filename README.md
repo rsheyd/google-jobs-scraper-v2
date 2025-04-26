@@ -1,6 +1,8 @@
-# Google Jobs Scraper
+# Google Jobs Scraper v2
 
 ### About the project
+
+This is a fork of the original [Google Jobs Scraper](https://github.com/alimahmoud7/google-jobs-scraper) project. I plan to maintain and update it as needed to ensure continued functionality and address any potential issues with outdated dependencies.
 
 This script fetches all the jobs from Google Careers for a specific location and saves them to a CSV file for easy filtering and analysis.
 
