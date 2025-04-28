@@ -4,6 +4,20 @@ import csv
 import argparse
 from urllib.parse import urlencode
 import time
+import html2text
+
+def html_to_markdown(html):
+    """Convert HTML to Markdown"""
+    if not html:
+        return ""
+    # Configure html2text
+    h = html2text.HTML2Text()
+    h.ignore_links = False  # Keep links
+    h.ignore_images = True  # Remove images
+    h.body_width = 0  # Don't wrap text
+    h.unicode_snob = True  # Use unicode
+    # Convert to markdown
+    return h.handle(html).strip()
 
 def get_jobs(location):
     """Get all jobs from Google Careers API for a specific location"""
@@ -15,7 +29,7 @@ def get_jobs(location):
         "page": 1,
         "page_size": 20,
         "location": location,
-        "sort_by": "relevance",
+        "sort_by": "relevance"
     }
     
     jobs = []
@@ -68,9 +82,9 @@ def get_jobs(location):
                     'title': job.get("title"),
                     'location': location_display,
                     'url': f"https://www.google.com/about/careers/applications/jobs/results/{job_id}",
-                    'description': job.get("description", ""),
-                    'qualifications': job.get("qualifications", ""),
-                    'responsibilities': job.get("responsibilities", "")
+                    'description': html_to_markdown(job.get("description", "")),
+                    'qualifications': html_to_markdown(job.get("qualifications", "")),
+                    'responsibilities': html_to_markdown(job.get("responsibilities", ""))
                 })
                 
             print(f"Found {len(job_listings)} jobs on page {page}")

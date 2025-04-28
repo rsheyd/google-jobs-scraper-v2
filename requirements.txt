@@ -1,3 +1,4 @@
 requests==2.31.0
 beautifulsoup4
-selenium 
+selenium
+html2text==2024.2.26 
